@@ -1,0 +1,46 @@
+{
+  "todos": [
+    {
+      "id": "1",
+      "name": "🛒 Buy groceries",
+      "isCompleted": true,
+      "description": "🥛 Milk, 🍞 Bread, 🥚 Eggs, and 🍏 Fruits",
+      "creator": "Alice"
+    },
+    {
+      "id": "2",
+      "name": "📊 Finish project report",
+      "isCompleted": true,
+      "description": "📝 Complete the final report for the project.",
+      "creator": "Bob"
+    },
+    {
+      "id": "3",
+      "name": "🏥 Schedule doctor appointment",
+      "isCompleted": false,
+      "description": "👨‍⚕️ Annual check-up with Dr. Smith.",
+      "creator": "Charlie"
+    },
+    {
+      "id": "4",
+      "name": "🧹 Clean the house",
+      "isCompleted": true,
+      "description": "🧼 Vacuum, dust, and organize the living room",
+      "creator": "Diana"
+    },
+    {
+      "id": "f0ec",
+      "name": "📖 Read a book",
+      "isCompleted": false,
+      "description": "📚 Finish reading 'The Great Gatsby'",
+      "creator": "Anthoni"
+    },
+    {
+      "id": "cf8d",
+      "name": "editar",
+      "isCompleted": false,
+      "description": "adaptar la funcionalidad de editar",
+      "creator": "Anthoni"
+    }
+  ]
+}
