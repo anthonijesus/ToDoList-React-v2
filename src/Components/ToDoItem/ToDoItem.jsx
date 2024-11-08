@@ -4,7 +4,7 @@ import styles from "./ToDoItem.module.scss";
 import { FaTrash } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 //
-const ToDoItem = ({ task }) => {
+const ToDoItem = ({ task, editTask }) => {
   //
   const { removeTask, completeTask } = useTask();
   //
@@ -16,9 +16,10 @@ const ToDoItem = ({ task }) => {
     removeTask(task);
   }
 
-  // function showEditTask(task) {
-  //   editTask(task);
-  // }
+  function showEditTask(task) {
+    //console.log(task);
+    editTask(task);
+  }
   return (
     <tbody>
       <tr className={task.isCompleted ? styles.completed : ""}>
@@ -32,10 +33,7 @@ const ToDoItem = ({ task }) => {
           <button onClick={() => deleteTask(task.id)}>
             <FaTrash />
           </button>
-          {/* <button onClick={() => showEditTask(task)}>
-            <FaEdit />
-          </button> */}
-          <button>
+          <button onClick={() => showEditTask(task)}>
             <FaEdit />
           </button>
         </td>

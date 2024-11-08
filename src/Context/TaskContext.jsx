@@ -1,4 +1,10 @@
-import { createContext, useContext, useReducer, useEffect } from "react";
+import {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  useState,
+} from "react";
 import axios from "axios";
 
 const TaskContext = createContext();
@@ -28,6 +34,13 @@ const taskReducer = (state, action) => {
 
 export const TaskProvider = ({ children }) => {
   const [tasks, dispatch] = useReducer(taskReducer, []);
+  //
+  const [isEditing, setIsEditing] = useState(false);
+  // esta funcion se pasa por parametro al componente editTask para luego volver a renderizar el componente addToDoForm en caso que se haga click en cancelar
+  const cancelEditTask = () => {
+    setIsEditing(false);
+  };
+  //
 
   useEffect(() => {
     const fetchTask = async () => {
@@ -67,7 +80,7 @@ export const TaskProvider = ({ children }) => {
 
   async function updateTask(taskId, updatedTask) {
     try {
-      const response = await axios.put(
+      const response = await axios.patch(
         `http://localhost:3000/todos/${taskId}`,
         updatedTask
       );
@@ -94,9 +107,32 @@ export const TaskProvider = ({ children }) => {
     });
   }
 
+  const [taskToEdit, setTaskToEdit] = useState({});
+  //
+  async function editTask(taskEdited) {
+    const taskUpdated = {
+      id: taskEdited.id,
+      name: taskEdited.name,
+      description: taskEdited.description,
+    };
+    setTaskToEdit(taskUpdated);
+    setIsEditing(true);
+  }
+
   return (
     <TaskContext.Provider
-      value={{ tasks, addNewTask, removeTask, updateTask, completeTask }}
+      value={{
+        tasks,
+        addNewTask,
+        removeTask,
+        updateTask,
+        completeTask,
+        cancelEditTask,
+        isEditing,
+        setIsEditing,
+        editTask,
+        taskToEdit,
+      }}
     >
       {children}
     </TaskContext.Provider>

@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useRef } from "react";
+import { useTask } from "../../Context/TaskContext";
 import styles from "../AddToDoForm/AddToDoForm.module.scss";
 
-const EditTask = ({ params, ParamsCancelEdit, ParamsUpdateTask }) => {
-  const [name, setName] = useState(params.name || "");
-  const [description, setDescription] = useState(params.description || "");
-
+const EditTask = ({ tasks, ParamsUpdateTask }) => {
+  const [name, setName] = useState(tasks.name || "");
+  const [description, setDescription] = useState(tasks.description || "");
+  //
+  const { cancelEditTask } = useTask();
   //
   useEffect(() => {
-    if (params) {
-      setName(params.name || "");
-      setDescription(params.description || "");
+    if (tasks) {
+      setName(tasks.name || "");
+      setDescription(tasks.description || "");
     }
-  }, [params]);
+  }, [tasks]);
   //
   function updatedTask() {
     //
     const updatedTask = {
-      id: params.id,
+      id: tasks.id,
       name: name,
       description: description,
     };
@@ -25,6 +27,10 @@ const EditTask = ({ params, ParamsCancelEdit, ParamsUpdateTask }) => {
     ParamsUpdateTask(updatedTask);
     setDescription("");
     setName("");
+  }
+
+  function CancelEdit() {
+    cancelEditTask();
   }
 
   return (
@@ -50,7 +56,7 @@ const EditTask = ({ params, ParamsCancelEdit, ParamsUpdateTask }) => {
           <button type="button" onClick={updatedTask}>
             Editar Tarea
           </button>
-          <button type="button" onClick={ParamsCancelEdit}>
+          <button type="button" onClick={CancelEdit}>
             Cerrar
           </button>
         </div>
