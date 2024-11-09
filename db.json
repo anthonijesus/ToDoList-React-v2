@@ -17,29 +17,22 @@
     {
       "id": "3",
       "name": "🏥 Schedule doctor appointment",
-      "isCompleted": false,
+      "isCompleted": true,
       "description": "👨‍⚕️ Annual check-up with Dr. Smith.",
       "creator": "Charlie"
     },
     {
       "id": "4",
       "name": "🧹 Clean the house",
-      "isCompleted": false,
+      "isCompleted": true,
       "description": "🧼 Vacuum, dust, and organize the living room",
       "creator": "Diana"
     },
     {
       "id": "f0ec",
-      "name": "📖 Read a book",
+      "name": "📖 Read a book..",
       "isCompleted": false,
-      "description": "📚 Finish reading 'The Great Gatsby'",
-      "creator": "Anthoni"
-    },
-    {
-      "id": "9cc5",
-      "name": "ir al almacenes",
-      "isCompleted": false,
-      "description": "comprar cervezasss",
+      "description": "📚 Finish reading 'The Great Gatsby'..",
       "creator": "Anthoni"
     }
   ]

@@ -4,11 +4,14 @@
 }
 
 button { 
-    font-size: 16px;
+    font-size: 15px;
     margin: 3px;
+    padding: 5px;
     border: none;
-    border-radius: 5px;
+    border-radius: 3px;
     cursor: pointer;
+    background-color: #2f5f57;
+    color: aliceblue;
 }
 
 input {

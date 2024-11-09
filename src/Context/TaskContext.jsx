@@ -71,6 +71,7 @@ export const TaskProvider = ({ children }) => {
     } catch (error) {
       console.log("Error: ", error);
     }
+    setIsDeleting(false);
   }
 
   async function taskUpdated(task) {

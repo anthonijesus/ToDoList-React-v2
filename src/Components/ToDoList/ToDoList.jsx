@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useTask } from "../../Context/TaskContext.jsx";
 import AddToDoForm from "../AddToDoForm/AddToDoForm.jsx";
 import ToDoItem from "../ToDoItem/ToDoItem.jsx";
@@ -16,11 +14,7 @@ const ToDoList = () => {
     removeTask,
     taskToDelete,
   } = useTask();
-
-  function deleteTask(id) {
-    removeTask(id);
-    setIsDeleting(false);
-  }
+  //
 
   return (
     <section className={styles.section}>
@@ -53,7 +47,7 @@ const ToDoList = () => {
               <h4>Desea Borrar la tarea?</h4>
               <h5>{taskToDelete.name}</h5>
               <div>
-                <button onClick={() => deleteTask(taskToDelete.id)}>SI</button>
+                <button onClick={() => removeTask(taskToDelete.id)}>SI</button>
                 <button onClick={() => setIsDeleting(false)}>NO</button>
               </div>
             </div>

@@ -1,8 +1,6 @@
-//import React from "react";
 import { useRef } from "react";
 import { useTask } from "../../Context/TaskContext";
 import styles from "./AddToDoForm.module.scss";
-//import axios from "axios";
 
 const AddToDoForm = () => {
   const { addNewTask } = useTask();
@@ -18,6 +16,10 @@ const AddToDoForm = () => {
       description: DescripRef.current.value,
       creator: "Anthoni",
     };
+    if (task.name === "" || task.description === "") {
+      alert("Hay campos vacios en el formulario");
+      return;
+    }
     addNewTask(task);
 
     // Reset input de la tarea
@@ -27,7 +29,7 @@ const AddToDoForm = () => {
 
   return (
     <div className={styles.formulario}>
-      <img src={"/todolistimage.jpg"} alt="image" className={styles.imagen} />
+      <img src={"/todolistimage.jpg"} alt="image" />
       <form onSubmit={submitTask}>
         <h2>Agrega tus Tareas </h2>
         <label htmlFor="name">Nombre de la tarea</label>

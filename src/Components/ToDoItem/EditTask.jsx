@@ -25,9 +25,16 @@ const EditTask = () => {
       name: name,
       description: description,
     };
+
+    if (updatedTask.name === "" || updatedTask.description === "") {
+      alert("Hay campos vacios en el formulario");
+      return;
+    }
     taskUpdated(updatedTask);
+    //
     setDescription("");
     setName("");
+    //
     setIsEditing(false);
   }
 
@@ -41,14 +48,12 @@ const EditTask = () => {
           value={name}
           onChange={(e) => setName(e.target.value)}
           type="text"
-          required
         />
         <label htmlFor="description">Descripción de la tarea</label>
         <input
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           type="text"
-          required
         />
         <div style={{ display: "flex", gap: "5px" }}>
           <button type="button" onClick={() => updateTask()}>
