@@ -4,17 +4,18 @@ import styles from "./ToDoItem.module.scss";
 import { FaTrash } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 //
-const ToDoItem = ({ task, editTask }) => {
+const ToDoItem = ({ task }) => {
   //
-  const { removeTask, completeTask } = useTask();
+  const { tasks, removeTask, completeTask, editTask, showDeleteTask } =
+    useTask();
   //
   function checkTask(task) {
     completeTask(task);
   }
 
-  function deleteTask(task) {
-    removeTask(task);
-  }
+  // function deleteTask(task) {
+  //   removeTask(task);
+  // }
 
   function showEditTask(task) {
     //console.log(task);
@@ -30,7 +31,7 @@ const ToDoItem = ({ task, editTask }) => {
             checked={task.isCompleted}
             readOnly
           />
-          <button onClick={() => deleteTask(task.id)}>
+          <button onClick={() => showDeleteTask(task)}>
             <FaTrash />
           </button>
           <button onClick={() => showEditTask(task)}>

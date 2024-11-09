@@ -36,11 +36,6 @@ export const TaskProvider = ({ children }) => {
   const [tasks, dispatch] = useReducer(taskReducer, []);
   //
   const [isEditing, setIsEditing] = useState(false);
-  // esta funcion se pasa por parametro al componente editTask para luego volver a renderizar el componente addToDoForm en caso que se haga click en cancelar
-  const cancelEditTask = () => {
-    setIsEditing(false);
-  };
-  //
 
   useEffect(() => {
     const fetchTask = async () => {
@@ -78,11 +73,11 @@ export const TaskProvider = ({ children }) => {
     }
   }
 
-  async function updateTask(taskId, updatedTask) {
+  async function taskUpdated(task) {
     try {
       const response = await axios.patch(
-        `http://localhost:3000/todos/${taskId}`,
-        updatedTask
+        `http://localhost:3000/todos/${task.id}`,
+        task
       );
       dispatch({ type: "UPDATE_TASK", payload: response.data });
     } catch (error) {
@@ -109,14 +104,29 @@ export const TaskProvider = ({ children }) => {
 
   const [taskToEdit, setTaskToEdit] = useState({});
   //
-  async function editTask(taskEdited) {
+  const [taskToDelete, setTaskToDelete] = useState({});
+  //
+  const [isDeleting, setIsDeleting] = useState(false);
+  //
+
+  async function editTask(taskToEdited) {
     const taskUpdated = {
-      id: taskEdited.id,
-      name: taskEdited.name,
-      description: taskEdited.description,
+      id: taskToEdited.id,
+      name: taskToEdited.name,
+      description: taskToEdited.description,
     };
     setTaskToEdit(taskUpdated);
     setIsEditing(true);
+  }
+  // esta funcion se pasa por parametro al componente editTask para luego volver a renderizar el componente addToDoForm en caso que se haga click en cancelar
+  const cancelEditTask = () => {
+    setIsEditing(false);
+  };
+  //
+  async function showDeleteTask(task) {
+    setTaskToDelete(task);
+    setIsDeleting(true);
+    setIsEditing(false);
   }
 
   return (
@@ -125,13 +135,17 @@ export const TaskProvider = ({ children }) => {
         tasks,
         addNewTask,
         removeTask,
-        updateTask,
+        taskUpdated,
         completeTask,
         cancelEditTask,
         isEditing,
         setIsEditing,
         editTask,
         taskToEdit,
+        isDeleting,
+        setIsDeleting,
+        showDeleteTask,
+        taskToDelete,
       }}
     >
       {children}

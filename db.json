@@ -24,29 +24,22 @@
     {
       "id": "4",
       "name": "🧹 Clean the house",
-      "isCompleted": true,
+      "isCompleted": false,
       "description": "🧼 Vacuum, dust, and organize the living room",
       "creator": "Diana"
     },
     {
       "id": "f0ec",
       "name": "📖 Read a book",
-      "isCompleted": true,
+      "isCompleted": false,
       "description": "📚 Finish reading 'The Great Gatsby'",
       "creator": "Anthoni"
     },
     {
-      "id": "cf8d",
-      "name": "editar",
+      "id": "9cc5",
+      "name": "ir al almacenes",
       "isCompleted": false,
-      "description": "adaptar la funcionalidad de editar",
-      "creator": "Anthoni"
-    },
-    {
-      "id": "8fdd",
-      "name": "Pruebas ",
-      "isCompleted": false,
-      "description": "pruebas",
+      "description": "comprar cervezasss",
       "creator": "Anthoni"
     }
   ]

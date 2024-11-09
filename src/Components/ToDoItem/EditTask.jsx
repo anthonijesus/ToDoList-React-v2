@@ -3,34 +3,32 @@ import { useRef } from "react";
 import { useTask } from "../../Context/TaskContext";
 import styles from "../AddToDoForm/AddToDoForm.module.scss";
 
-const EditTask = ({ tasks, ParamsUpdateTask }) => {
-  const [name, setName] = useState(tasks.name || "");
-  const [description, setDescription] = useState(tasks.description || "");
+const EditTask = () => {
+  const { cancelEditTask, taskToEdit, taskUpdated, setIsEditing } = useTask();
   //
-  const { cancelEditTask } = useTask();
+  const [name, setName] = useState(taskToEdit.name || "");
+  const [description, setDescription] = useState(taskToEdit.description || "");
   //
+
   useEffect(() => {
-    if (tasks) {
-      setName(tasks.name || "");
-      setDescription(tasks.description || "");
+    if (taskToEdit) {
+      setName(taskToEdit.name || "");
+      setDescription(taskToEdit.description || "");
     }
-  }, [tasks]);
+  }, [taskToEdit]);
   //
-  function updatedTask() {
-    //
+
+  //
+  function updateTask() {
     const updatedTask = {
-      id: tasks.id,
+      id: taskToEdit.id,
       name: name,
       description: description,
     };
-
-    ParamsUpdateTask(updatedTask);
+    taskUpdated(updatedTask);
     setDescription("");
     setName("");
-  }
-
-  function CancelEdit() {
-    cancelEditTask();
+    setIsEditing(false);
   }
 
   return (
@@ -53,10 +51,10 @@ const EditTask = ({ tasks, ParamsUpdateTask }) => {
           required
         />
         <div style={{ display: "flex", gap: "5px" }}>
-          <button type="button" onClick={updatedTask}>
+          <button type="button" onClick={() => updateTask()}>
             Editar Tarea
           </button>
-          <button type="button" onClick={CancelEdit}>
+          <button type="button" onClick={cancelEditTask}>
             Cerrar
           </button>
         </div>
