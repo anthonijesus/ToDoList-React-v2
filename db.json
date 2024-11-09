@@ -17,7 +17,7 @@
     {
       "id": "3",
       "name": "🏥 Schedule doctor appointment",
-      "isCompleted": true,
+      "isCompleted": false,
       "description": "👨‍⚕️ Annual check-up with Dr. Smith.",
       "creator": "Charlie"
     },

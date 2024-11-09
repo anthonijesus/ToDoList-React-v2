@@ -8,7 +8,7 @@ La apliación está desarrollada usando la libreria de React, por lo tanto para 
   - Crear una carpeta en el directorio de su preferencia (por ejemplo C:\TodoList)
   - Acceder con el Git Bash al directorio creado (ejecuta --> cd C:\TodoList)
   - En dicho directorio ejecuta los siguientes comandos:
-    _ Clona el siguiente repositorio de Github: "git clone https://github.com/anthonijesus/ToDoList-React.git"
+    _ Clona el siguiente repositorio de Github: "git clone https://github.com/anthonijesus/ToDoList-React-v2.git"
     _ Luego dirigete a la carpeta clonada (cd C:\TodoList\ToDoList-React)
     \_ Instala las dependencias que precisa el proyecto para funcionar, ejecuta el comando ---> "npm install"
     \_ Finalmente ejecuta el comando "npm run dev" y en una nueva ventana de Git Bash y dirigiendote a la misma ruta ("cd C:" luego "cd ToDoList" y luego "cd ToDoList-React") ejecuta "npm run dev-server"
