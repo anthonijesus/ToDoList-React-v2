@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useRef } from "react";
 import { useTask } from "../../Context/TaskContext";
 import styles from "./AddToDoForm.module.scss";
@@ -6,46 +6,57 @@ import styles from "./AddToDoForm.module.scss";
 const AddToDoForm = () => {
   const {
     addNewTask,
-    cancelEditTask,
     taskToEdit,
     taskUpdated,
     setIsEditing,
     isEditing,
+    isDeleting,
   } = useTask();
   //
   const TaskRef = useRef("");
   const DescripRef = useRef("");
   //
-  //
-  const [name, setName] = useState(taskToEdit.name || "");
-  const [description, setDescription] = useState(taskToEdit.description || "");
-  //
 
   useEffect(() => {
-    if (taskToEdit) {
-      setName(taskToEdit.name || "");
-      setDescription(taskToEdit.description || "");
+    if (isEditing && taskToEdit) {
+      TaskRef.current.value = taskToEdit.name || "";
+      DescripRef.current.value = taskToEdit.description || "";
     }
-  }, [taskToEdit]);
+  }, [isEditing, taskToEdit]);
+  //
+  useEffect(() => {
+    if (isDeleting) {
+      TaskRef.current.value = "";
+      DescripRef.current.value = "";
+    }
+  }, [isDeleting]);
   //
   function updateTask() {
     const updatedTask = {
       id: taskToEdit.id,
-      name: name,
-      description: description,
+      name: TaskRef.current.value,
+      description: DescripRef.current.value,
     };
 
-    if (updatedTask.name === "" || updatedTask.description === "") {
+    if (updatedTask.TaskRef === "" || updatedTask.DescripRef === "") {
       alert("Hay campos vacios en el formulario");
       return;
     }
+
     taskUpdated(updatedTask);
     //
-    setDescription("");
-    setName("");
+    TaskRef.current.value = "";
+    DescripRef.current.value = "";
     //
     setIsEditing(false);
   }
+  //
+
+  const cancelEditTask = () => {
+    TaskRef.current.value = "";
+    DescripRef.current.value = "";
+    setIsEditing(false);
+  };
   //
   const submitTask = (event) => {
     event.preventDefault();
@@ -61,7 +72,6 @@ const AddToDoForm = () => {
     }
     addNewTask(task);
 
-    // Reset input de la tarea
     TaskRef.current.value = "";
     DescripRef.current.value = "";
   };
@@ -71,23 +81,9 @@ const AddToDoForm = () => {
       <form onSubmit={submitTask}>
         {!isEditing ? <h2>Agrega tus Tareas </h2> : <h2>Edita la Tareas </h2>}
         <label htmlFor="name">Nombre de la tarea</label>
-        {!isEditing && <input type="text" ref={TaskRef} required />}
-        {isEditing && (
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            type="text"
-          />
-        )}
+        <input type="text" ref={TaskRef} required />
         <label htmlFor="description">Descripción de la tarea</label>
-        {!isEditing && <input type="text" ref={DescripRef} required />}
-        {isEditing && (
-          <input
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            type="text"
-          />
-        )}
+        <input type="text" ref={DescripRef} required />
         <div>
           {!isEditing && <button type="submit">Crear Tarea</button>}
           {isEditing && (

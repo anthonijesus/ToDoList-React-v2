@@ -119,11 +119,7 @@ export const TaskProvider = ({ children }) => {
     setTaskToEdit(taskUpdated);
     setIsEditing(true);
   }
-  // esta funcion se pasa por parametro al componente editTask para luego volver a renderizar el componente addToDoForm en caso que se haga click en cancelar
-  const cancelEditTask = () => {
-    setIsEditing(false);
-  };
-  //
+
   async function showDeleteTask(task) {
     setTaskToDelete(task);
     setIsDeleting(true);
@@ -138,7 +134,6 @@ export const TaskProvider = ({ children }) => {
         removeTask,
         taskUpdated,
         completeTask,
-        cancelEditTask,
         isEditing,
         setIsEditing,
         editTask,
