@@ -1,26 +1,20 @@
 import { useTask } from "../../Context/TaskContext.jsx";
 import AddToDoForm from "../AddToDoForm/AddToDoForm.jsx";
 import ToDoItem from "../ToDoItem/ToDoItem.jsx";
-import EditTask from "../ToDoItem/EditTask.jsx";
+//import EditTask from "../ToDoItem/EditTask.jsx";
 import styles from "./ToDoList.module.scss";
 //
 
 const ToDoList = () => {
-  const {
-    tasks,
-    isEditing,
-    isDeleting,
-    setIsDeleting,
-    removeTask,
-    taskToDelete,
-  } = useTask();
+  const { tasks, isDeleting, setIsDeleting, removeTask, taskToDelete } =
+    useTask();
   //
 
   return (
     <section className={styles.section}>
       <div className={styles.todoForm}>
-        {!isEditing && <AddToDoForm />}
-        {isEditing && <EditTask />}
+        <AddToDoForm />
+        {/* {isEditing && <EditTask />} */}
       </div>
       <div className={styles.todoList}>
         <div className={styles.listado}>
